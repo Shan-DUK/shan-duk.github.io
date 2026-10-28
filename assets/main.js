@@ -1,6 +1,7 @@
 (function () {
   "use strict";
-  var data = window.SHAN_D_SITE || {};
+  var defaultData = window.SHAN_D_SITE || {};
+  var data = defaultData;
   var siteRoot = document.currentScript ? new URL("../", document.currentScript.src) : new URL("./", window.location.href);
 
   // On the live site, read the editor-managed JSON files. The bundled JS file
@@ -35,6 +36,12 @@
       return url.protocol === "https:" || url.protocol === "http:" ? url.href : "";
     } catch (error) { return ""; }
   }
+  function validCoverImage(value) {
+    var path = String(value || "").replace(/\\/g, "/").replace(/^\/+/, "");
+    if (!/^assets\/covers\/[a-z0-9._/-]+\.(?:jpe?g|png|webp)$/i.test(path)) return "";
+    if (path.split("/").some(function (part) { return part === "." || part === ".."; })) return "";
+    return new URL(path, siteRoot).href;
+  }
   function validBandcampEmbed(value) {
     var href = validExternalUrl(value);
     if (!href) return "";
@@ -50,7 +57,7 @@
     }
     musicGrid.innerHTML = items.map(function (item, index) {
       var style = ["acid", "violet", "orange", "blue", "mono"].indexOf(item.coverStyle) > -1 ? item.coverStyle : "acid";
-      var image = validExternalUrl(item.artwork) || (item.artwork && /^[a-z0-9/_-]+\.(png|jpe?g|webp)$/i.test(item.artwork) ? item.artwork : "");
+      var image = validExternalUrl(item.artwork) || validCoverImage(item.artwork);
       var coverContents = image
         ? '<img src="' + escapeHTML(image) + '" alt="" loading="lazy">'
         : '<span class="cover-lines" aria-hidden="true"></span><span class="cover-orbit" aria-hidden="true"></span><span class="cover-index" aria-hidden="true">SD / ' + String(index + 1).padStart(2, "0") + '</span>';
@@ -148,8 +155,10 @@
     var target = document.getElementById("about-gallery");
     if (!target) return;
     var photos = Array.isArray(data.aboutPhotos) ? data.aboutPhotos : [];
+    var defaultPhotos = Array.isArray(defaultData.aboutPhotos) ? defaultData.aboutPhotos : [];
     target.innerHTML = photos.map(function (photo, index) {
-      var image = photo && validArtistImage(photo.image);
+      var fallbackPhoto = defaultPhotos[index] || {};
+      var image = photo && validArtistImage(photo.image || fallbackPhoto.image);
       if (!image) return "";
       var alt = escapeHTML(photo.alt || photo.caption || "Photo of Shan-D");
       var caption = escapeHTML(photo.caption || "Shan-D");
