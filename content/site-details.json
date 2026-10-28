@@ -23,6 +23,7 @@
     }
   ],
   "newsletter": {
+    "action": "xurstadia@gmail.com",
     "method": "post",
     "emailField": "email"
   }
