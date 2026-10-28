@@ -19,7 +19,7 @@ The `/admin/` page links to Pages CMS, an online editor that signs in with GitHu
    - **1. Music shop** — release names, prices, artwork, previews and Bandcamp links.
    - **2. Upcoming shows** — dates, venues, cities and ticket links.
    - **3. Mixes** — mix names and notes, with a SoundCloud link or an uploaded audio file.
-   - **4. Website info** — About text, social links and mailing-list form details.
+   - **4. Website info** — About text, artist photos, social links and mailing-list form details.
 5. Save. Netlify deploys the update automatically.
 
 The [plain-English editing guide](admin/help.html) has short step-by-step instructions.
@@ -31,9 +31,10 @@ SoundCloud links and uploaded audio are added to the public website. Anyone who 
 - `content/music.json` holds the releases shown in the shop.
 - `content/shows.json` holds upcoming dates.
 - `content/mixes.json` holds the mixes and their SoundCloud links.
-- `content/site-details.json` holds the About text, socials and newsletter settings.
-- `.pages.yml` defines the simple edit forms and cover-art upload folder.
+- `content/site-details.json` holds the About text, artist photos, socials and newsletter settings.
+- `.pages.yml` defines the simple edit forms and the cover-art, artist-photo and mix-audio upload folders.
 - `assets/covers/` holds release cover art. Upload new covers through the editor.
+- `assets/artist/` holds artist photos. Add or replace them through **4. Website info → Photos of Shan-D**.
 
 ## Mailing list
 

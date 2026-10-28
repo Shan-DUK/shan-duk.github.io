@@ -5,7 +5,11 @@
 */
 window.SHAN_D_SITE = {
   artist: "SHAN-D",
-  about: "UK-based dubstep and grime producer, specialising in 140 BPM. Explore the catalogue, catch a live set, and get the next drop straight to your inbox.",
+  about: "Hi, I’m Shan-D — a UK-based producer and DJ focused on 140 BPM dubstep and grime.\n\nI release my own tunes and remixes, and bring that sound into my DJ sets. The catalogue includes the five-track Dub In My Veins EP and the Average Man (Shan-D Remix) EP with Mr Naylor.\n\nI share new music and “Dub Of The Day” clips on Instagram. Here you can browse my releases, play my mixes and find my next show. Thanks for listening and supporting the music — keep steppin’. ",
+  aboutPhotos: [
+    { image: "assets/artist/shan-d-portrait.jpeg", alt: "Black-and-white portrait of Shan-D with headphones around his neck.", caption: "A portrait from my camera roll." },
+    { image: "assets/artist/shan-d-mic-check.jpg", alt: "Shan-D at a music setup with headphones, microphone and keyboard.", caption: "At the mic — a clip from my Instagram.", link: "https://www.instagram.com/shandrecords/reel/Dc2y2YKNcYO/" }
+  ],
   music: [
     { title: "Full Digital Discography", format: "14 RELEASES / 20% OFF", price: "£22.80+", description: "All 14 Shan-D releases in one digital collection.", buyUrl: "https://shan-d.bandcamp.com/track/red-card#b113470783-buy", buyLabel: "BUY DIGITAL DISCOGRAPHY", coverStyle: "acid", badge: "SAVE 20%" },
     { title: "Average Man (Shan-D Remix) EP", format: "DIGITAL EP / MR NAYLOR + SHAN-D", price: "£2.00+", description: "The remix plus the instrumental version.", buyUrl: "https://shan-d.bandcamp.com/album/average-man-shan-d-remix-ep", bandcampEmbed: "https://bandcamp.com/EmbeddedPlayer/v=2/album=3955889096/size=large/bgcol=10100f/linkcol=ed1c2e/tracklist=false/artwork=small/transparent=true/", artwork: "assets/covers/average-man.jpg", buyLabel: "BUY ON BANDCAMP", badge: "LATEST" },
@@ -33,7 +37,7 @@ window.SHAN_D_SITE = {
   // Empty URLs are hidden from the footer.
   socials: [
     { label: "SoundCloud", url: "" },
-    { label: "Instagram", url: "" },
+    { label: "Instagram", url: "https://www.instagram.com/shandrecords/" },
     { label: "YouTube", url: "" }
   ]
 };

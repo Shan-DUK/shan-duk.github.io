@@ -1,6 +1,19 @@
 {
   "artist": "SHAN-D",
-  "about": "UK-based dubstep and grime producer, specialising in 140 BPM. Explore the catalogue, catch a live set, and get the next drop straight to your inbox.",
+  "about": "Hi, I’m Shan-D — a UK-based producer and DJ focused on 140 BPM dubstep and grime.\n\nI release my own tunes and remixes, and bring that sound into my DJ sets. The catalogue includes the five-track Dub In My Veins EP and the Average Man (Shan-D Remix) EP with Mr Naylor.\n\nI share new music and “Dub Of The Day” clips on Instagram. Here you can browse my releases, play my mixes and find my next show. Thanks for listening and supporting the music — keep steppin’.",
+  "aboutPhotos": [
+    {
+      "image": "assets/artist/shan-d-portrait.jpeg",
+      "alt": "Black-and-white portrait of Shan-D with headphones around his neck.",
+      "caption": "A portrait from my camera roll."
+    },
+    {
+      "image": "assets/artist/shan-d-mic-check.jpg",
+      "alt": "Shan-D at a music setup with headphones, microphone and keyboard.",
+      "caption": "At the mic — a clip from my Instagram.",
+      "link": "https://www.instagram.com/shandrecords/reel/Dc2y2YKNcYO/"
+    }
+  ],
   "newsletter": {
     "action": "",
     "method": "post",
@@ -14,7 +27,7 @@
     },
     {
       "label": "Instagram",
-      "url": ""
+      "url": "https://www.instagram.com/shandrecords/"
     },
     {
       "label": "YouTube",

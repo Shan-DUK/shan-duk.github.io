@@ -131,7 +131,37 @@
   }
   function renderAbout() {
     var target = document.getElementById("about-copy");
-    if (target) target.textContent = data.about || "";
+    if (target) {
+      var paragraphs = String(data.about || "").trim().split(/\n\s*\n/).filter(Boolean);
+      target.innerHTML = paragraphs.map(function (paragraph) {
+        return "<p>" + escapeHTML(paragraph).replace(/\n/g, "<br>") + "</p>";
+      }).join("");
+    }
+  }
+  function validArtistImage(value) {
+    var path = String(value || "").replace(/\\/g, "/").replace(/^\/+/, "");
+    if (!/^assets\/artist\/[a-z0-9._/-]+\.(?:jpe?g|png|webp)$/i.test(path)) return "";
+    if (path.split("/").some(function (part) { return part === "." || part === ".."; })) return "";
+    return new URL(path, siteRoot).href;
+  }
+  function renderAboutPhotos() {
+    var target = document.getElementById("about-gallery");
+    if (!target) return;
+    var photos = Array.isArray(data.aboutPhotos) ? data.aboutPhotos : [];
+    target.innerHTML = photos.map(function (photo, index) {
+      var image = photo && validArtistImage(photo.image);
+      if (!image) return "";
+      var alt = escapeHTML(photo.alt || photo.caption || "Photo of Shan-D");
+      var caption = escapeHTML(photo.caption || "Shan-D");
+      var link = validExternalUrl(photo.link);
+      var accessibleLabel = link ? "Open Instagram post: " + alt : alt;
+      var media = link
+        ? '<a class="about-photo__image" href="' + escapeHTML(link) + '" target="_blank" rel="noopener noreferrer" aria-label="' + escapeHTML(accessibleLabel) + '"><img src="' + escapeHTML(image) + '" alt="' + alt + '" loading="lazy"><span class="about-photo__play" aria-hidden="true">▶</span></a>'
+        : '<div class="about-photo__image"><img src="' + escapeHTML(image) + '" alt="' + alt + '" loading="lazy"></div>';
+      var source = link ? '<span class="about-photo__source">INSTAGRAM CLIP ↗</span>' : '<span class="about-photo__source">SHAN-D</span>';
+      return '<figure class="about-photo reveal">' + media + '<figcaption>' + source + '<span class="about-photo__caption">' + caption + '</span></figcaption></figure>';
+    }).join("");
+    target.hidden = !target.querySelector(".about-photo");
   }
   function renderSocials() {
     var target = document.getElementById("footer-socials");
@@ -208,6 +238,7 @@
     configureBandcampPreviews();
     renderShows();
     renderAbout();
+    renderAboutPhotos();
     renderSocials();
     configureNewsletter();
     configureMenu();

@@ -13,6 +13,13 @@ media:
     categories: [audio]
     extensions: [mp3, m4a, aac, wav, ogg]
     rename: safe
+  - name: artist-photos
+    label: Artist photos
+    input: assets/artist
+    output: /assets/artist
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
 
 content:
   - name: shop
@@ -189,6 +196,31 @@ content:
           - name: about
             label: About text
             type: text
+            description: "Write a short introduction in your own words. Leave a blank line between paragraphs."
+          - name: aboutPhotos
+            label: Photos of Shan-D
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{caption}"
+            fields:
+              - name: image
+                label: Photo
+                type: image
+                options:
+                  media: artist-photos
+              - name: alt
+                label: Describe the photo for screen readers
+                type: string
+              - name: caption
+                label: Short caption
+                type: string
+              - name: link
+                label: Optional link to original post
+                type: string
+                required: false
+                description: "Leave blank for a normal photo. Add a link if the image opens an Instagram post or clip."
           - name: socials
             label: Social links
             type: object
