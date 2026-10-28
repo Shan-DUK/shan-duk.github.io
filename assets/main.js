@@ -1,6 +1,7 @@
 (function () {
   "use strict";
   var data = window.SHAN_D_SITE || {};
+  var siteRoot = document.currentScript ? new URL("../", document.currentScript.src) : new URL("./", window.location.href);
 
   // On the live site, read the editor-managed JSON files. The bundled JS file
   // remains a fallback so the site still previews when opened from a folder.
@@ -8,7 +9,7 @@
     if (!window.fetch || window.location.protocol === "file:") return Promise.resolve(data);
     var files = ["content/music.json", "content/shows.json", "content/site-details.json"];
     return Promise.all(files.map(function (path) {
-      return fetch(path, { cache: "no-store" }).then(function (response) {
+      return fetch(new URL(path, siteRoot).href, { cache: "no-store" }).then(function (response) {
         if (!response.ok) throw new Error("Could not load " + path);
         return response.json();
       });
@@ -41,6 +42,7 @@
     return url.hostname === "bandcamp.com" && url.pathname.indexOf("/EmbeddedPlayer/") === 0 ? href : "";
   }
   function renderMusic() {
+    if (!musicGrid) return;
     var items = Array.isArray(data.music) ? data.music : [];
     if (!items.length) {
       musicGrid.innerHTML = '<div class="empty-state empty-state--music"><span class="empty-state__symbol">∿</span><p>Your next release will land here.</p></div>';
@@ -69,6 +71,7 @@
     }).join("");
   }
   function configureBandcampPreviews() {
+    if (!musicGrid) return;
     musicGrid.addEventListener("click", function (event) {
       var button = event.target.closest(".listen-link");
       if (!button) return;
@@ -109,11 +112,12 @@
     return escapeHTML(new Intl.DateTimeFormat("en-GB", { day: "2-digit", month: "short", year: "numeric" }).format(parsed).toUpperCase());
   }
   function renderShows() {
+    if (!showsList) return;
     var shows = Array.isArray(data.shows) ? data.shows.slice() : [];
     shows = shows.filter(function (show) { return show && (show.date || show.dateLabel || show.venue || show.city); });
     shows.sort(function (a, b) { return String(a.date || "9999").localeCompare(String(b.date || "9999")); });
     if (!shows.length) {
-      showsList.innerHTML = '<div class="empty-state empty-state--shows"><span class="empty-state__symbol">◎</span><p>Show dates will appear here as soon as they are announced.</p><a href="#newsletter">Get the next date first <span aria-hidden="true">↗</span></a></div>';
+      showsList.innerHTML = '<div class="empty-state empty-state--shows"><span class="empty-state__symbol">◎</span><p>Show dates will appear here as soon as they are announced.</p><a href="../index.html#newsletter">Get the next date first <span aria-hidden="true">↗</span></a></div>';
       return;
     }
     showsList.innerHTML = shows.map(function (show) {
@@ -125,9 +129,13 @@
       return '<article class="show-row reveal"><time class="show-date">' + formatShowDate(show) + '</time><div class="show-details"><h3>' + (title || "Venue / City TBA") + '</h3><p>' + escapeHTML(show.event || "LIVE SET") + '</p></div>' + ticket + '</article>';
     }).join("");
   }
-  function renderAbout() { document.getElementById("about-copy").textContent = data.about || ""; }
+  function renderAbout() {
+    var target = document.getElementById("about-copy");
+    if (target) target.textContent = data.about || "";
+  }
   function renderSocials() {
     var target = document.getElementById("footer-socials");
+    if (!target) return;
     var socials = Array.isArray(data.socials) ? data.socials : [];
     var available = socials.filter(function (item) { return item && item.label && validExternalUrl(item.url); });
     target.innerHTML = available.map(function (item) {
@@ -135,6 +143,7 @@
     }).join("");
   }
   function configureNewsletter() {
+    if (!newsletterForm || !newsletterStatus) return;
     var settings = data.newsletter || {};
     var action = validExternalUrl(settings.action);
     if (!action) {
@@ -169,6 +178,7 @@
   function configureMenu() {
     var toggle = document.querySelector(".menu-toggle");
     var nav = document.getElementById("primary-nav");
+    if (!toggle || !nav) return;
     toggle.addEventListener("click", function () {
       var expanded = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", String(!expanded));
@@ -201,7 +211,8 @@
     renderSocials();
     configureNewsletter();
     configureMenu();
-    document.getElementById("year").textContent = new Date().getFullYear();
+    var year = document.getElementById("year");
+    if (year) year.textContent = new Date().getFullYear();
     configureReveal();
   });
 })();

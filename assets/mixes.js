@@ -40,6 +40,24 @@
     return url.href;
   }
 
+  function renderSocials(socials) {
+    var target = document.getElementById("footer-socials");
+    if (!target) return;
+    var available = Array.isArray(socials) ? socials.filter(function (item) {
+      if (!item || !item.label || !item.url) return false;
+      try {
+        var url = new URL(item.url);
+        return url.protocol === "https:" || url.protocol === "http:";
+      } catch (error) {
+        return false;
+      }
+    }) : [];
+    target.innerHTML = available.map(function (item) {
+      return '<a href="' + escapeHTML(item.url) + '" target="_blank" rel="noopener noreferrer">'
+        + escapeHTML(item.label) + ' <span aria-hidden="true">↗</span></a>';
+    }).join("");
+  }
+
   function renderMixes(mixes) {
     var available = Array.isArray(mixes) ? mixes.filter(function (mix) {
       return mix && mix.title && validSoundCloudLink(mix.soundcloudLink);
@@ -94,7 +112,22 @@
       .catch(function () { renderMixes(data.mixes); });
   }
 
+  function loadSocials() {
+    if (!window.fetch || window.location.protocol === "file:") {
+      renderSocials(data.socials);
+      return;
+    }
+    fetch("../content/site-details.json", { cache: "no-store" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("Could not load social links");
+        return response.json();
+      })
+      .then(function (content) { renderSocials(content.socials); })
+      .catch(function () { renderSocials(data.socials); });
+  }
+
   document.getElementById("year").textContent = new Date().getFullYear();
   configureMenu();
   loadMixes();
+  loadSocials();
 })();

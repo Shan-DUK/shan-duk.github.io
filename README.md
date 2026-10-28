@@ -6,6 +6,8 @@ This is the source for the Shan-D music website. The shop uses Bandcamp for chec
 
 The project includes `netlify.toml` so Netlify can publish it as a static site. After the `Shan-DUK/shan-duk.github.io` GitHub repository is connected to Netlify, the live site deploys from the `main` branch whenever it changes. The site does not need a build command.
 
+The homepage is the landing page. Shows, Music, Mixes and About each have their own page, with shared navigation between them. The mailing-list signup stays on the homepage.
+
 ## Simple online editor
 
 The `/admin/` page links to Pages CMS, an online editor that signs in with GitHub and saves edits to the repository.
