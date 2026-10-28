@@ -6,6 +6,13 @@ media:
     categories: [image]
     extensions: [jpg, jpeg, png, webp]
     rename: safe
+  - name: mix-audio
+    label: Mix audio files
+    input: assets/mixes
+    output: /assets/mixes
+    categories: [audio]
+    extensions: [mp3, m4a, aac, wav, ogg]
+    rename: safe
 
 content:
   - name: shop
@@ -140,10 +147,31 @@ content:
                 label: Short note (optional)
                 type: text
                 required: false
+              - name: source
+                label: How should this mix play?
+                type: select
+                options:
+                  values:
+                    - label: SoundCloud link
+                      name: soundcloud
+                    - label: Upload an audio file
+                      name: upload
+                description: Choose one option below, then fill in the matching box.
               - name: soundcloudLink
-                label: SoundCloud private share link
+                label: SoundCloud link (public or share link)
                 type: string
-                description: "Paste the full SoundCloud private share link. It is saved in public website files, so only add mixes you want everyone to hear."
+                required: false
+                description: "For SoundCloud, paste the full link to a track or playlist. Public links and private share links work."
+              - name: audioFile
+                label: Upload a mix from your computer
+                type: file
+                required: false
+                options:
+                  media: mix-audio
+                  path: assets/mixes
+                  categories: [audio]
+                  extensions: [mp3, m4a, aac, wav, ogg]
+                description: "For your own player, choose an audio file from your computer. MP3 is recommended. The file will be public on your website."
 
   - name: info_group
     label: 4. Website info

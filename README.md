@@ -18,13 +18,13 @@ The `/admin/` page links to Pages CMS, an online editor that signs in with GitHu
 4. Choose a numbered section:
    - **1. Music shop** — release names, prices, artwork, previews and Bandcamp links.
    - **2. Upcoming shows** — dates, venues, cities and ticket links.
-   - **3. Mixes** — mix names, notes and SoundCloud private share links.
+   - **3. Mixes** — mix names and notes, with a SoundCloud link or an uploaded audio file.
    - **4. Website info** — About text, social links and mailing-list form details.
 5. Save. Netlify deploys the update automatically.
 
 The [plain-English editing guide](admin/help.html) has short step-by-step instructions.
 
-SoundCloud private share links are unlisted, not password-protected. Because this website and its source files are public, only add links for mixes you want everyone to hear.
+SoundCloud links and uploaded audio are added to the public website. Anyone who visits the site can listen to those mixes, so only add content you want everyone to hear.
 
 ## Content and images
 
