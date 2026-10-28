@@ -36,6 +36,23 @@
       return url.protocol === "https:" || url.protocol === "http:" ? url.href : "";
     } catch (error) { return ""; }
   }
+  function instagramReelEmbedUrl(value) {
+    var href = validExternalUrl(value);
+    if (!href) return "";
+    try {
+      var url = new URL(href);
+      if (url.hostname.toLowerCase().replace(/^www\./, "") !== "instagram.com") return "";
+      var parts = url.pathname.split("/").filter(Boolean);
+      var reelIndex = parts.findIndex(function (part) {
+        return part === "reel" || part === "reels";
+      });
+      var shortcode = reelIndex > -1 ? parts[reelIndex + 1] : "";
+      if (!shortcode || !/^[a-z0-9_-]+$/i.test(shortcode)) return "";
+      return "https://www.instagram.com/reel/" + encodeURIComponent(shortcode) + "/embed/";
+    } catch (error) {
+      return "";
+    }
+  }
   function validCoverImage(value) {
     var path = String(value || "").replace(/\\/g, "/").replace(/^\/+/, "");
     if (!/^assets\/covers\/[a-z0-9._/-]+\.(?:jpe?g|png|webp)$/i.test(path)) return "";
@@ -164,10 +181,16 @@
       var caption = escapeHTML(photo.caption || "Shan-D");
       var link = validExternalUrl(photo.link);
       var accessibleLabel = link ? "Open Instagram post: " + alt : alt;
-      var media = link
+      var reelEmbedUrl = link && instagramReelEmbedUrl(link);
+      var media = reelEmbedUrl
+        ? '<div class="about-photo__embed"><iframe src="' + escapeHTML(reelEmbedUrl)
+          + '" title="Instagram Reel: ' + escapeHTML(photo.caption || alt)
+          + '" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe></div><a class="about-photo__watch" href="'
+          + escapeHTML(link) + '" target="_blank" rel="noopener noreferrer">OPEN ON INSTAGRAM <span aria-hidden="true">↗</span></a>'
+        : link
         ? '<a class="about-photo__image" href="' + escapeHTML(link) + '" target="_blank" rel="noopener noreferrer" aria-label="' + escapeHTML(accessibleLabel) + '"><img src="' + escapeHTML(image) + '" alt="' + alt + '" loading="lazy"><span class="about-photo__play" aria-hidden="true">▶</span></a>'
         : '<div class="about-photo__image"><img src="' + escapeHTML(image) + '" alt="' + alt + '" loading="lazy"></div>';
-      var source = link ? '<span class="about-photo__source">INSTAGRAM CLIP ↗</span>' : '<span class="about-photo__source">SHAN-D</span>';
+      var source = reelEmbedUrl ? '<span class="about-photo__source">INSTAGRAM REEL / SHAN-D</span>' : link ? '<span class="about-photo__source">INSTAGRAM CLIP ↗</span>' : '<span class="about-photo__source">SHAN-D</span>';
       return '<figure class="about-photo reveal">' + media + '<figcaption>' + source + '<span class="about-photo__caption">' + caption + '</span></figcaption></figure>';
     }).join("");
     target.hidden = !target.querySelector(".about-photo");
