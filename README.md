@@ -4,7 +4,7 @@ This is the source for the Shan-D music website. The shop uses Bandcamp for chec
 
 ## Public website
 
-The project includes `render.yaml` so Render can publish it as a static site. After the `Shan-DUK/shan-duk.github.io` GitHub repository is connected to Render, the live site deploys from the `main` branch whenever it changes. The site is designed to publish without a build step.
+The project includes `netlify.toml` so Netlify can publish it as a static site. After the `Shan-DUK/shan-duk.github.io` GitHub repository is connected to Netlify, the live site deploys from the `main` branch whenever it changes. The site does not need a build command.
 
 ## Simple online editor
 
@@ -17,7 +17,7 @@ The `/admin/` page links to Pages CMS, an online editor that signs in with GitHu
    - **1. Music shop** — release names, prices, artwork, previews and Bandcamp links.
    - **2. Upcoming shows** — dates, venues, cities and ticket links.
    - **3. Website info** — About text, social links and mailing-list form details.
-5. Save. Render deploys the update automatically.
+5. Save. Netlify deploys the update automatically.
 
 The [plain-English editing guide](admin/help.html) has short step-by-step instructions.
 
