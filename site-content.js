@@ -5,7 +5,7 @@
 */
 window.SHAN_D_SITE = {
   artist: "SHAN-D",
-  about: "Hi, I’m Shan-D — a UK-based producer and DJ focused on 140 BPM dubstep and grime.\n\nI release my own tunes and remixes, and share DJ sets too. The catalogue includes the five-track Dub In My Veins EP and the Average Man (Shan-D Remix) EP with Mr Naylor.\n\nI share new music and “Dub Of The Day” clips on Instagram. Here you can browse my releases, play my mixes and find my next show. Thanks for listening and supporting the music — keep steppin’.",
+  about: "Hi, I’m Shan-D — a producer and DJ based in the UK, focused on 140 BPM dubstep and grime.\n\nI release my own tunes and remixes, and share DJ sets too. The catalogue includes the five-track Dub In My Veins EP and the Average Man (Shan-D Remix) EP with Mr Naylor.\n\nI share new music and “Dub Of The Day” clips on Instagram. Here you can browse my releases, play my mixes and find my next show. Thanks for listening and supporting the music — keep steppin’.",
   aboutPhotos: [
     { image: "assets/artist/shan-d-portrait.jpeg", alt: "Black-and-white portrait of Shan-D with headphones around his neck.", caption: "A portrait from my camera roll." },
     { image: "assets/artist/shan-d-mic-check.jpg", alt: "Shan-D at a music setup with headphones, microphone and keyboard.", caption: "At the mic — a clip from my Instagram.", link: "https://www.instagram.com/shandrecords/reel/Dc2y2YKNcYO/" }
