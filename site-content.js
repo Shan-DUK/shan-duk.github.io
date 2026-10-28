@@ -23,6 +23,8 @@ window.SHAN_D_SITE = {
     { title: "Shan-DJ Vol. 2", format: "DIGITAL ALBUM / 4 TRACKS", price: "£4.00+", description: "Braaap, TTK, Marathon and Drop.", buyUrl: "https://shan-d.bandcamp.com/album/shan-dj-vol-2", bandcampEmbed: "https://bandcamp.com/EmbeddedPlayer/v=2/album=3655280205/size=large/bgcol=10100f/linkcol=ed1c2e/tracklist=false/artwork=small/transparent=true/", artwork: "assets/covers/shan-dj-vol-2.jpg", buyLabel: "BUY ON BANDCAMP" },
     { title: "Shan-DJ Vol. 1", format: "DIGITAL ALBUM / 4 TRACKS", price: "£4.00+", description: "Chesty, Never Look Back, Grimey and Rinse Out The Estate.", buyUrl: "https://shan-d.bandcamp.com/album/shan-dj-vol-1", bandcampEmbed: "https://bandcamp.com/EmbeddedPlayer/v=2/album=485174649/size=large/bgcol=10100f/linkcol=ed1c2e/tracklist=false/artwork=small/transparent=true/", artwork: "assets/covers/shan-dj-vol-1.jpg", buyLabel: "BUY ON BANDCAMP" }
   ],
+  // Add mix listings to content/mixes.json in the online editor.
+  mixes: [],
   // Add show dates here. Use date as YYYY-MM-DD, or provide dateLabel to control its display.
   shows: [],
   // Add your provider's standard form POST URL to enable signups.

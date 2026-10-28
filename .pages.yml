@@ -115,8 +115,38 @@ content:
                 required: false
                 description: Leave blank if tickets are not on sale yet.
 
+  - name: mixes_group
+    label: 3. Mixes
+    type: group
+    items:
+      - name: mixes
+        label: Your mixes
+        type: file
+        path: content/mixes.json
+        format: json
+        fields:
+          - name: mixes
+            label: Mixes
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: Mix name
+                type: string
+              - name: description
+                label: Short note (optional)
+                type: text
+                required: false
+              - name: soundcloudLink
+                label: SoundCloud private share link
+                type: string
+                description: "Paste the full SoundCloud private share link. It is saved in public website files, so only add mixes you want everyone to hear."
+
   - name: info_group
-    label: 3. Website info
+    label: 4. Website info
     type: group
     items:
       - name: details
