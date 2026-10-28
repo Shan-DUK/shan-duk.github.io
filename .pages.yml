@@ -242,37 +242,9 @@ content:
             type: object
             fields:
               - name: action
-                label: Email provider form link
+                label: Google Forms sign-up link
                 type: string
-                description: Add this after you choose an email service. The signup box will not collect addresses until this is filled in.
-              - name: method
-                label: Form method
-                type: select
-                options:
-                  values:
-                    - label: POST
-                      name: post
-                    - label: GET
-                      name: get
-              - name: emailField
-                label: Email field name
-                type: string
-                description: Most email services use the word email.
-              - name: extraFields
-                label: Extra sign-up details
-                type: object
-                list:
-                  collapsible:
-                    collapsed: true
-                    summary: "{name}"
-                fields:
-                  - name: name
-                    label: Field name
-                    type: string
-                  - name: value
-                    label: Field value
-                    type: string
-                description: "Only use these if your email service gives you extra hidden form details. Otherwise leave this empty."
+                description: Paste the full Google Forms responder link. The website will show the form on the homepage.
 
 settings:
   commit:

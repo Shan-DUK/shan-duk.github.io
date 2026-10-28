@@ -196,15 +196,14 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 
 .newsletter { position: relative; overflow: hidden; padding-block: 103px 100px; background: #1c1012; }
 .newsletter-noise { position: absolute; top: -150px; right: -130px; width: 620px; height: 620px; border: 1px solid rgba(237,28,46,.13); border-radius: 50%; box-shadow: 0 0 0 45px rgba(237,28,46,.025),0 0 0 90px rgba(237,28,46,.025),0 0 0 135px rgba(237,28,46,.02); }
-.newsletter-layout { position: relative; display: grid; grid-template-columns: 1fr .8fr; gap: 8%; align-items: end; }
+.newsletter-layout { position: relative; display: grid; grid-template-columns: 1fr .8fr; gap: 8%; align-items: start; }
 .newsletter h2 { font-size: clamp(3.8rem,6.3vw,6.2rem); }
 .newsletter-copy { max-width: 330px; margin: 23px 0 0; color: #b3b4a8; font-size: 13px; line-height: 1.7; }
-.newsletter-form { display: flex; min-height: 59px; border-bottom: 1px solid rgba(238,238,228,.55); }
-.newsletter-form input { min-width: 0; flex: 1; padding: 0 8px; color: var(--cream); background: transparent; border: 0; outline: 0; font-size: 13px; }
-.newsletter-form input::placeholder { color: #9b9c91; }
-.newsletter-form button { display: flex; align-items: center; gap: 26px; padding: 0 8px 0 18px; color: var(--accent); background: transparent; border: 0; font-size: 9px; font-weight: 900; letter-spacing: .13em; cursor: pointer; }
-.newsletter-form button:hover { color: #ff8a91; }
-.newsletter-form button b { font-size: 18px; font-weight: 400; }
+.newsletter-embed { display: block; width: 100%; height: 620px; border: 0; border-radius: 4px; background: #fff; }
+.newsletter-embed[hidden], .newsletter-open-link[hidden] { display: none; }
+.newsletter-open-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; color: var(--accent); font-size: 9px; font-weight: 900; letter-spacing: .13em; }
+.newsletter-open-link:hover { color: #ff8a91; }
+.newsletter-open-link span { font-size: 15px; }
 .form-note, .form-error { margin: 13px 0 0; color: #96988b; font-size: 10px; line-height: 1.6; }
 .form-error { color: var(--accent); }
 
@@ -286,8 +285,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   .about-actions { gap: 0 18px; }
   .newsletter { padding-block: 76px; }
   .newsletter-layout { grid-template-columns: 1fr; gap: 40px; }
-  .newsletter-form { min-height: 54px; }
-  .newsletter-form button { gap: 12px; padding-left: 10px; font-size: 8px; }
+  .newsletter-embed { height: 650px; }
+  .newsletter-open-link { font-size: 8px; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 28px 18px; }
   .footer-top > p { justify-self: end; font-size: 17px; }
   .footer-socials { grid-column: 1/-1; justify-content: start; }

@@ -38,7 +38,9 @@ SoundCloud links and uploaded audio are added to the public website. Anyone who 
 
 ## Mailing list
 
-The signup form is ready to connect but does not collect addresses yet. Choose an email service and enter its signup form address and field details in **4. Website info → Mailing list sign-up**. Never store the email account password in the website files.
+The homepage embeds the published Google Form. It collects an email address and a required consent choice. Form responses are stored in the Google account that owns the form, not in public website files. A private linked spreadsheet called **Fan Mailing List** keeps the sign-ups in a simple table. The Pages CMS editor's **4. Website info → Mailing list sign-up** setting holds only the public responder link.
+
+When Shan-D asks for a mailing-list email, use the current Google Form responses as the subscriber list, check Gmail for any `UNSUBSCRIBE` requests before sending, and send recipients as BCC from the connected Gmail account. Include `Reply UNSUBSCRIBE to stop receiving emails` in each message. Drafting copy does not send it; send only when Shan-D explicitly asks. There are no subscribers yet, so the first campaign should wait until people sign up.
 
 ## Bandcamp and payouts
 

@@ -24,6 +24,7 @@
   var musicGrid = document.getElementById("music-grid");
   var showsList = document.getElementById("shows-list");
   var newsletterForm = document.getElementById("newsletter-form");
+  var newsletterOpenLink = document.getElementById("newsletter-open-link");
   var newsletterStatus = document.getElementById("newsletter-status");
   var newsletterSetupNote = document.getElementById("newsletter-setup-note");
 
@@ -208,34 +209,30 @@
     if (!newsletterForm || !newsletterStatus) return;
     var settings = data.newsletter || {};
     var action = validExternalUrl(settings.action);
+    if (action && new URL(action).protocol !== "https:") action = "";
     if (!action) {
-        newsletterStatus.textContent = "The mailing list is being set up. Check back soon for new drops and dates.";
-      newsletterForm.addEventListener("submit", function (event) {
-        event.preventDefault();
+      newsletterForm.hidden = true;
+      if (newsletterOpenLink) newsletterOpenLink.hidden = true;
+      newsletterStatus.textContent = "The mailing list is being set up. Check back soon for new music and show dates.";
+      if (newsletterSetupNote) {
         newsletterSetupNote.hidden = false;
-        newsletterSetupNote.textContent = "Mailing list signups are not connected yet. Add your email provider's form link in the website editor to enable this.";
-      });
+        newsletterSetupNote.textContent = "The sign-up form is not connected yet.";
+      }
       return;
     }
-    newsletterForm.action = action;
-    newsletterForm.method = settings.method === "get" ? "get" : "post";
-    document.getElementById("newsletter-email").name = settings.emailField || "email";
-      var extraFields = settings.extraFields || [];
-      if (!Array.isArray(extraFields)) {
-        extraFields = Object.keys(extraFields).map(function (key) {
-          return { name: key, value: extraFields[key] };
-        });
-      }
-      extraFields.forEach(function (field) {
-        var key = field && field.name;
-        if (!key) return;
-      var hidden = document.createElement("input");
-      hidden.type = "hidden";
-      hidden.name = key;
-        hidden.value = String(field.value || "");
-      newsletterForm.appendChild(hidden);
-    });
-    newsletterStatus.textContent = "No noise. Just new drops and dates.";
+    var formUrl = new URL(action);
+    if (formUrl.hostname.toLowerCase() === "docs.google.com"
+      && /^\/forms\/d\/e\/[^/]+\/viewform\/?$/.test(formUrl.pathname)) {
+      formUrl.searchParams.set("embedded", "true");
+    }
+    newsletterForm.src = formUrl.href;
+    newsletterForm.hidden = false;
+    if (newsletterOpenLink) {
+      newsletterOpenLink.href = action;
+      newsletterOpenLink.hidden = false;
+    }
+    newsletterStatus.textContent = "Sign up above. You can leave the list at any time by replying UNSUBSCRIBE to one of Shan-D’s emails.";
+    if (newsletterSetupNote) newsletterSetupNote.hidden = true;
   }
   function configureMenu() {
     var toggle = document.querySelector(".menu-toggle");

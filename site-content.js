@@ -31,9 +31,8 @@ window.SHAN_D_SITE = {
   mixes: [],
   // Add show dates here. Use date as YYYY-MM-DD, or provide dateLabel to control its display.
   shows: [],
-  // Add your provider's standard form POST URL to enable signups.
-  // emailField defaults to "email"; extraFields lets you add provider-required hidden fields.
-  newsletter: { action: "", method: "post", emailField: "email", extraFields: {} },
+  // Google Forms collects mailing-list signups. On the live site, update this in Website info.
+  newsletter: { action: "https://docs.google.com/forms/d/e/1FAIpQLSdBC-ZOE2wrUWmtcQuTkYyZ8kuCpKUzJCbUTx8rXT7DYlWx8g/viewform" },
   // Empty URLs are hidden from the footer.
   socials: [
     { label: "SoundCloud", url: "" },

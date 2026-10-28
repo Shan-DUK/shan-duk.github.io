@@ -23,8 +23,6 @@
     }
   ],
   "newsletter": {
-    "action": "https://forms.gle/qfsWzjYdCLzZYuwc8",
-    "method": "post",
-    "emailField": "email"
+    "action": "https://docs.google.com/forms/d/e/1FAIpQLSdBC-ZOE2wrUWmtcQuTkYyZ8kuCpKUzJCbUTx8rXT7DYlWx8g/viewform"
   }
 }
