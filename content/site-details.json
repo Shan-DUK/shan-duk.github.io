@@ -1,0 +1,24 @@
+{
+  "artist": "SHAN-D",
+  "about": "UK-based dubstep and grime producer, specialising in 140 BPM. Explore the catalogue, catch a live set, and get the next drop straight to your inbox.",
+  "newsletter": {
+    "action": "",
+    "method": "post",
+    "emailField": "email",
+    "extraFields": []
+  },
+  "socials": [
+    {
+      "label": "SoundCloud",
+      "url": ""
+    },
+    {
+      "label": "Instagram",
+      "url": ""
+    },
+    {
+      "label": "YouTube",
+      "url": ""
+    }
+  ]
+}

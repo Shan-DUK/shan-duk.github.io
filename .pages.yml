@@ -1,0 +1,192 @@
+media:
+  - name: covers
+    label: Cover artwork
+    input: assets/covers
+    output: /assets/covers
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+
+content:
+  - name: shop
+    label: 1. Music shop
+    type: group
+    items:
+      - name: releases
+        label: Your music catalogue
+        type: file
+        path: content/music.json
+        format: json
+        fields:
+          - name: music
+            label: Releases
+            type: object
+            list:
+              min: 1
+              collapsible:
+                collapsed: true
+                summary: "{title} — {price}"
+            fields:
+              - name: title
+                label: Release name
+                type: string
+              - name: format
+                label: Release type
+                type: string
+                description: "For example: DIGITAL TRACK or DIGITAL EP."
+              - name: price
+                label: Price shown on the card
+                type: string
+                description: "For example: £1.50+ or FREE DOWNLOAD."
+              - name: description
+                label: Short description
+                type: text
+              - name: artwork
+                label: Cover image
+                type: image
+                options:
+                  media: covers
+              - name: buyUrl
+                label: Bandcamp checkout page
+                type: string
+                description: Paste the full Bandcamp page link where fans can buy or download this release.
+              - name: bandcampEmbed
+                label: Bandcamp player link
+                type: string
+                required: false
+                description: Optional. Paste the player URL from Bandcamp's Embed code to add a preview.
+              - name: buyLabel
+                label: Button words
+                type: string
+              - name: badge
+                label: Small label on the cover
+                type: string
+                required: false
+              - name: coverStyle
+                label: Cover pattern (used if there is no picture)
+                type: select
+                options:
+                  values:
+                    - label: Red rings
+                      name: acid
+                    - label: Red lines
+                      name: violet
+                    - label: Red circle
+                      name: orange
+                    - label: Red grid
+                      name: blue
+                    - label: Black and white
+                      name: mono
+
+  - name: shows_group
+    label: 2. Upcoming shows
+    type: group
+    items:
+      - name: dates
+        label: Your show dates
+        type: file
+        path: content/shows.json
+        format: json
+        fields:
+          - name: shows
+            label: Shows
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{date} — {venue}"
+            fields:
+              - name: date
+                label: Date (YYYY-MM-DD)
+                type: string
+                description: "Use year-month-day, for example 2026-12-06."
+              - name: venue
+                label: Venue
+                type: string
+              - name: city
+                label: Town or city
+                type: string
+              - name: event
+                label: Event name or note
+                type: string
+              - name: ticketUrl
+                label: Ticket page link
+                type: string
+                required: false
+                description: Leave blank if tickets are not on sale yet.
+
+  - name: info_group
+    label: 3. Website info
+    type: group
+    items:
+      - name: details
+        label: About, links and mailing list
+        type: file
+        path: content/site-details.json
+        format: json
+        fields:
+          - name: artist
+            label: Artist name
+            type: string
+          - name: about
+            label: About text
+            type: text
+          - name: socials
+            label: Social links
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{label}"
+            fields:
+              - name: label
+                label: Name shown on the site
+                type: string
+              - name: url
+                label: Link to your page
+                type: string
+                required: false
+                description: Paste the full link, starting with https://
+          - name: newsletter
+            label: Mailing list sign-up
+            type: object
+            fields:
+              - name: action
+                label: Email provider form link
+                type: string
+                description: Add this after you choose an email service. The signup box will not collect addresses until this is filled in.
+              - name: method
+                label: Form method
+                type: select
+                options:
+                  values:
+                    - label: POST
+                      name: post
+                    - label: GET
+                      name: get
+              - name: emailField
+                label: Email field name
+                type: string
+                description: Most email services use the word email.
+              - name: extraFields
+                label: Extra sign-up details
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{name}"
+                fields:
+                  - name: name
+                    label: Field name
+                    type: string
+                  - name: value
+                    label: Field value
+                    type: string
+                description: "Only use these if your email service gives you extra hidden form details. Otherwise leave this empty."
+
+settings:
+  commit:
+    templates:
+      create: "Add {name}"
+      update: "Update {name}"
+      delete: "Remove {name}"

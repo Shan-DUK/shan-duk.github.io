@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10100f">
+  <title>Simple editing guide — Shan-D</title>
+  <style>
+    :root { font-family: Arial, Helvetica, sans-serif; color: #242424; background: #f3f3f3; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { padding: 20px max(20px, calc((100% - 850px) / 2)); color: #fff; background: #10100f; border-bottom: 5px solid #ed1c2e; }
+    header a { color: #fff; font-weight: 700; text-underline-offset: 4px; }
+    main { max-width: 850px; margin: 32px auto; padding: 0 20px 48px; }
+    h1 { margin: 0 0 10px; font-size: clamp(30px, 6vw, 46px); }
+    h2 { margin: 30px 0 10px; font-size: 23px; }
+    p, li { font-size: 16px; line-height: 1.65; }
+    .intro, .card { padding: 22px; background: #fff; border-left: 4px solid #ed1c2e; }
+    .steps { padding-left: 24px; }
+    .button { display: inline-block; margin-top: 8px; padding: 13px 17px; color: #fff; background: #b91828; font-weight: 700; text-decoration: none; }
+    .button:hover { background: #8e101c; }
+    code { padding: 2px 5px; background: #eee; }
+    @media (max-width: 600px) { main { margin-top: 22px; } .intro, .card { padding: 18px; } }
+  </style>
+</head>
+<body>
+  <header><a href="index.html">← Back to the website editor</a></header>
+  <main>
+    <h1>How to update the Shan-D website</h1>
+    <p class="intro">You can change the website using a simple online editor. Sign in with GitHub, open the section you want, make your change, then save.</p>
+    <a class="button" href="https://app.pagescms.org/Shan-DUK/shan-duk.github.io">Open the Shan-D editor ↗</a>
+
+    <h2>Change music in the shop</h2>
+    <ol class="steps">
+      <li>Choose <strong>1. Music shop</strong>, then <strong>Your music catalogue</strong>.</li>
+      <li>Click a release to open it. Change its name, price, description, Bandcamp link or cover.</li>
+      <li>To add a song, choose <strong>Add an item</strong>. Fill in the boxes and paste its Bandcamp page into <strong>Bandcamp checkout page</strong>.</li>
+      <li>To remove a release, open it and choose the remove option.</li>
+      <li>Save your change. Your public website will update after it publishes.</li>
+    </ol>
+
+    <h2>Change show dates</h2>
+    <ol class="steps">
+      <li>Choose <strong>2. Upcoming shows</strong>, then <strong>Your show dates</strong>.</li>
+      <li>Choose <strong>Add an item</strong>. Enter the date like <code>2026-12-06</code>, the venue and the town or city.</li>
+      <li>Paste a ticket link if tickets are on sale. Leave it blank if they are not.</li>
+      <li>Save. Remove a show after it has happened or if it is cancelled.</li>
+    </ol>
+
+    <h2>Change your website info</h2>
+    <ol class="steps">
+      <li>Choose <strong>3. Website info</strong> to edit your About text, social links and mailing-list details.</li>
+      <li>For a social link, enter its name and the full web address, starting with <code>https://</code>.</li>
+      <li>The mailing-list box starts off disconnected. Choose an email service first, then copy its sign-up form details into the mailing-list boxes. The service must give you permission to collect and email your fans.</li>
+      <li>Save. The mailing list will only collect addresses after an email service is connected.</li>
+    </ol>
+
+    <h2>Remember</h2>
+    <ul>
+      <li>Use the same GitHub account that owns the Shan-D website repository to sign in.</li>
+      <li>Check Bandcamp links carefully. Bandcamp handles payment and music downloads.</li>
+      <li>Never put a password, PayPal login or bank details into an editor box.</li>
+    </ul>
+
+    <section class="card" id="first-time">
+      <h2>Your first time opening the editor</h2>
+      <p>The Pages CMS website needs access to the Shan-D website repository to show the edit boxes and save changes. Choose only the Shan-D website repository when GitHub asks what Pages CMS can access.</p>
+      <ol class="steps">
+        <li>Open the editor and choose <strong>Sign in with GitHub</strong>.</li>
+        <li>Allow the Pages CMS GitHub app to access <code>Shan-DUK/shan-duk.github.io</code>.</li>
+        <li>Return to Pages CMS and open the Shan-D repository.</li>
+      </ol>
+      <p>If the repository does not appear, use the Pages CMS app installation screen to add access for that one repository. The website will publish your saved edits automatically.</p>
+      <a class="button" href="index.html">Go back to the editor page</a>
+    </section>
+  </main>
+</body>
+</html>
