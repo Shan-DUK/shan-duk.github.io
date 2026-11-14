@@ -1,3 +1,14 @@
+actions:
+  - name: publish-live-site
+    label: Publish live site
+    workflow: publish-site.yml
+    ref: current
+    cancelable: false
+    confirm:
+      title: Publish this site?
+      message: This will ask Netlify to publish the latest saved website changes. Netlify must be accepting production deploys for this to work.
+      button: Publish
+
 media:
   - name: covers
     label: Cover artwork

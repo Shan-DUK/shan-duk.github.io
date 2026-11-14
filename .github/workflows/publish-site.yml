@@ -1,0 +1,38 @@
+name: Publish Shan-D site
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Pages CMS publish request
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify production deploy
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        shell: bash
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK" ]; then
+            echo "The Netlify publish hook is not configured for this repository."
+            exit 1
+          fi
+
+          status=$(curl --silent --show-error --max-time 30 \
+            --output /dev/null --write-out "%{http_code}" \
+            --request POST "$NETLIFY_BUILD_HOOK" 2>/dev/null) || {
+              echo "Netlify did not accept the publish request. Check the Netlify project status."
+              exit 1
+            }
+
+          case "$status" in
+            2*) echo "Netlify accepted the production deploy request." ;;
+            *) echo "Netlify returned HTTP $status. Check the Netlify project status."; exit 1 ;;
+          esac

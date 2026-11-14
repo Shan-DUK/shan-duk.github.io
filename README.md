@@ -20,7 +20,10 @@ The `/admin/` page links to Pages CMS, an online editor that signs in with GitHu
    - **2. Upcoming shows** — dates, venues, cities and ticket links.
    - **3. Mixes** — mix names and notes, with a SoundCloud link or an uploaded audio file.
    - **4. Website info** — About text, artist photos, social links and mailing-list form details.
-5. Save. Netlify deploys the update automatically.
+5. Save. Pages CMS writes the change to GitHub, and Netlify normally deploys the `main` branch automatically.
+6. To request a fresh production deploy from Pages CMS, use **Publish live site** in the editor actions. This action uses the `NETLIFY_BUILD_HOOK` GitHub repository secret and the workflow at `.github/workflows/publish-site.yml`.
+
+Netlify currently reports that production deploys are paused for this team because operational credits are exhausted. The live site stays online, but no publish action can make new changes live until Netlify resumes production deploys. Check Netlify Usage & billing; do not upgrade unless you choose a paid plan.
 
 The [plain-English editing guide](admin/help.html) has short step-by-step instructions.
 
